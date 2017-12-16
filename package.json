@@ -1,0 +1,16 @@
+{
+  "name": "mandelbrot",
+  "version": "1.0.0",
+  "description": "Mandelbrot set computed in Rust/wasm and drawn into canvas element!",
+  "main": "index.js",
+  "author": "Thiago Sigrist <sigrist@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "mkdir -p dist && cp src/js/index.js dist/ && rustc +nightly src/rs/mandelbrot.rs -O --crate-type cdylib --target wasm32-unknown-unknown -o dist/mandelbrot.large.wasm && wasm-gc dist/mandelbrot.large.wasm dist/mandelbrot.wasm",
+    "start": "npm run build && http-server dist"
+  },
+  "devDependencies": {
+    "http-server": "^0.10.0"
+  }
+}
